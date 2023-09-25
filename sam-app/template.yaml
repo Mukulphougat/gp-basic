@@ -16,6 +16,19 @@ Parameters:
   
 
 Resources:
+  APIGateway:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowMethods:
+          - 'POST'
+          - 'GET'
+          - 'PUT'
+          - 'DELETE'
+        AllowHeaders:
+          - '*'
+        AllowOrigins:
+          - '*'
   HelloWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
@@ -29,8 +42,9 @@ Resources:
             TableName: policy
       Events:
         HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: HttpApi # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
+            ApiId: !Ref APIGateway 
             Path: /all
             Method: get
   CreatePolicyFunction:
@@ -46,8 +60,9 @@ Resources:
             TableName: policy
       Events:
         HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: HttpApi # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
+            ApiId: !Ref APIGateway
             Path: /add
             Method: post
   UpdatePolicyFunction:
@@ -63,8 +78,9 @@ Resources:
             TableName: policy
       Events:
         HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: HttpApi # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
+            ApiId: !Ref APIGateway
             Path: /update
             Method: patch
   DeletePolicyFunction:
@@ -80,8 +96,9 @@ Resources:
             TableName: policy
       Events:
         HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: HttpApi # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
+            ApiId: !Ref APIGateway
             Path: /delete/{id}
             Method: delete
   GetPolicyByIdFunction:
@@ -97,8 +114,9 @@ Resources:
             TableName: policy
       Events:
         HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: HttpApi # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
+            ApiId: !Ref APIGateway
             Path: /get/{policyNumber}
             Method: get 
   # PolicyTable:

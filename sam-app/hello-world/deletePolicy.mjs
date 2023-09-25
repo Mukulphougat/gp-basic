@@ -15,7 +15,7 @@ import {
   export const deletePolicy=async(event,context)=>{
       try{
           const idToBeDeleted=parseInt(event.pathParameters.id)
-          const body=JSON.parse(event.body)
+          // const body=JSON.parse(event.body)
           const policy=await dynamo.send(
             new DeleteCommand({
               TableName: tableName,
@@ -24,9 +24,19 @@ import {
                 },
             })
           );
+          const headers = {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Cache-Control": "max-age=0, no-store, must-revalidate",
+            "Access-Control-Allow-Methods": "DELETE",
+            "Access-Control-Allow-Credentials": "true",
+            Pragma: "no-cache",
+            Expires: 0
+        };
           return {
+              headers,
               statusCode: 200,
-              body: "Policy with ID: "+body.id+" is deleted."
+              body: "Policy with ID: "+idToBeDeleted+" is deleted."
           }
       } catch(err) {
           console.log(err);

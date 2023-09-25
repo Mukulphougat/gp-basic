@@ -18,8 +18,8 @@ export const updatePolicy=async(event,context)=>{
             new PutCommand({
                 TableName: tableName,
                 Item: {
-                    id: body.id,
-                    policyNumber: body.policyNumber,
+                    id: parseInt(body.id),
+                    policyNumber: parseInt(body.policyNumber),
                     name: body.name,
                     address: body.address,
                     phone: body.phone,
@@ -36,6 +36,11 @@ export const updatePolicy=async(event,context)=>{
             })
         )
         return {
+            headers: {
+                "Access-Control-Allow-Headers" : "Content-Type",
+                "Access-Control-Allow-Origin": "http://localhost:3000", // Allow from anywhere 
+                "Access-Control-Allow-Methods": "UPDATE" // Allow only GET request 
+              },
             statusCode: 200,
             body: JSON.stringify(getPolicy.Item)
         }

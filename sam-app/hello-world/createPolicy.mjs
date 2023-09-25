@@ -18,11 +18,11 @@ export const createPolicy=async(event,context)=>{
             new PutCommand({
                 TableName: tableName,
                 Item: {
-                    id: body.id,
-                    policyNumber: body.policyNumber,
+                    id: parseInt(body.id),
+                    policyNumber: parseInt(body.policyNumber),
                     name: body.name,
                     address: body.address,
-                    phone: body.phone,
+                    phone: parseInt(body.phone),
                     email: body.email
                 }
             })
@@ -35,9 +35,15 @@ export const createPolicy=async(event,context)=>{
                 }
             })
         )
+        console.log(JSON.stringify(event.body));
         return {
+            // headers: {
+            //     "Access-Control-Allow-Headers" : "*",
+            //     "Access-Control-Allow-Origin": "*", // Allow from anywhere 
+            //     "Access-Control-Allow-Methods": "POST" // Allow only GET request 
+            // },
             statusCode: 200,
-            body: JSON.stringify(getPolicy.Item)
+            body: JSON.stringify(event.body)
         }
     } catch(err) {
         console.log(err);

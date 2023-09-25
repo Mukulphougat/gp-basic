@@ -41,6 +41,11 @@ export const getPolicy=async(event,context)=>{
             }
         }        
         return {
+            headers: {
+                "Access-Control-Allow-Headers" : "Content-Type",
+                "Access-Control-Allow-Origin": "http://localhost:3000", // Allow from anywhere 
+                "Access-Control-Allow-Methods": "GET" // Allow only GET request 
+              },
             statusCode: 200,
             body: JSON.stringify(result)
         }
