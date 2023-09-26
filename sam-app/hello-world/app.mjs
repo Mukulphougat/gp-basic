@@ -56,6 +56,7 @@ export const lambdaHandler = async (event, context) => {
           },
           statusCode: 200,
           body: JSON.stringify(user.Items),
+          // add some
         };
       } catch (error) {
         console.error('Error scanning table:', error);
