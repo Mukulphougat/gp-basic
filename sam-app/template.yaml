@@ -23,6 +23,7 @@ Resources:
           - 'GET'
           - 'PUT'
           - 'DELETE'
+          - 'PATCH'
         AllowHeaders:
           - '*'
         AllowOrigins:

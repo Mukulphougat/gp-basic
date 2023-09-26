@@ -7,7 +7,7 @@ import {
 
 
 const client = new DynamoDBClient({
-    endpoint: "https://8000-mukulphougat-gpbasic-jhjmpsxpirr.ws-us104.gitpod.io"
+    endpoint: "https://8000-mukulphougat-gpbasic-jhjmpsxpirr.ws-us105.gitpod.io"
 });
 const dynamo = DynamoDBDocumentClient.from(client);
 const tableName="policy"

@@ -7,7 +7,7 @@ import {
 
 
 const client = new DynamoDBClient({
-    endpoint: "https://8000-mukulphougat-gpbasic-jhjmpsxpirr.ws-us104.gitpod.io"
+    endpoint: "https://8000-mukulphougat-gpbasic-jhjmpsxpirr.ws-us105.gitpod.io"
   });
 const dynamo = DynamoDBDocumentClient.from(client);
 const tableName="policy"
@@ -39,7 +39,7 @@ export const updatePolicy=async(event,context)=>{
         return {
             headers: {
                 "Access-Control-Allow-Headers" : "Content-Type",
-                "Access-Control-Allow-Origin": "http://localhost:3000", // Allow from anywhere 
+                "Access-Control-Allow-Origin": "*", // Allow from anywhere 
                 "Access-Control-Allow-Methods": "UPDATE" // Allow only GET request 
               },
             statusCode: 200,
