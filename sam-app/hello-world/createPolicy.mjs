@@ -4,7 +4,8 @@ import {
   PutCommand,
   GetCommand
 } from "@aws-sdk/lib-dynamodb";
-
+import { Logger } from '@aws-lambda-powertools/logger';
+const logger = new Logger();
 
 const client = new DynamoDBClient({
     endpoint: "https://8000-mukulphougat-gpbasic-jhjmpsxpirr.ws-us105.gitpod.io"
@@ -14,6 +15,7 @@ const tableName="policy"
 export const createPolicy=async(event,context)=>{
     try{
         const body=JSON.parse(event.body)
+        logger.info("THIS IS A SIMPLE LOG: "+JSON.stringify(body));
         const policy=await dynamo.send(
             new PutCommand({
                 TableName: tableName,
