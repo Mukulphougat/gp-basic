@@ -27,6 +27,7 @@ export const updatePolicy=async(event,context)=>{
                 }
             })
         )
+        //Add
         const getPolicy=await dynamo.send(
             new GetCommand({
                 TableName: tableName,
