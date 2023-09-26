@@ -24,17 +24,12 @@ import {
                 },
             })
           );
-          const headers = {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Cache-Control": "max-age=0, no-store, must-revalidate",
-            "Access-Control-Allow-Methods": "DELETE",
-            "Access-Control-Allow-Credentials": "true",
-            Pragma: "no-cache",
-            Expires: 0
-        };
           return {
-              headers,
+              headers: {
+                "Access-Control-Allow-Headers" : "*",
+                "Access-Control-Allow-Origin": "*", // Allow from anywhere 
+                "Access-Control-Allow-Methods": "DELETE" // Allow only GET request 
+              },
               statusCode: 200,
               body: "Policy with ID: "+idToBeDeleted+" is deleted."
           }

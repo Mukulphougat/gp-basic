@@ -13,8 +13,6 @@ Parameters:
   Table:
     Type: String
     Default: policy
-  
-
 Resources:
   APIGateway:
     Type: AWS::Serverless::HttpApi

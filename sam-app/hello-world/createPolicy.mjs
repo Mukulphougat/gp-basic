@@ -27,23 +27,24 @@ export const createPolicy=async(event,context)=>{
                 }
             })
         )
-        const getPolicy=await dynamo.send(
-            new GetCommand({
-                TableName: tableName,
-                Key: {
-                    id: body.id
-                }
-            })
-        )
-        console.log(JSON.stringify(event.body));
+        // const getPolicy=await dynamo.send(
+        //     new GetCommand({
+        //         TableName: tableName,
+        //         Key: {
+        //             id: body.id
+        //         }
+        //     })
+        // )
+        // console.log(JSON.stringify(policy));
+        // console.log(JSON.stringify(event.body));
         return {
-            // headers: {
-            //     "Access-Control-Allow-Headers" : "*",
-            //     "Access-Control-Allow-Origin": "*", // Allow from anywhere 
-            //     "Access-Control-Allow-Methods": "POST" // Allow only GET request 
-            // },
+            headers: {
+                "Access-Control-Allow-Headers" : "*",
+                "Access-Control-Allow-Origin": "*", // Allow from anywhere 
+                "Access-Control-Allow-Methods": "POST" // Allow only GET request 
+            },
             statusCode: 200,
-            body: JSON.stringify(event.body)
+            body: JSON.stringify(body)
         }
     } catch(err) {
         console.log(err);
